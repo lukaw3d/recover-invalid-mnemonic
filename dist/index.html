@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'sha256-maWESYSmK8qXeUqmlwu/2s+/3vbwgQEcs5QtZhemXd0=';">
+    <style>
+      body { font-family: sans-serif; }
+      textarea { max-width: 100%; }
+    
+</style>
+  </head>
+  <body>
+    <h2>Recover a missing word in mnemonic phrase (BIP39)</h2>
+
+    To slightly increase security:
+    <ol>
+      <li>open this page in Incognito mode</li>
+      <li>disconnect internet</li>
+      <li>enter mnemonic</li>
+      <li>submit</li>
+      <li>write down possible mnemonics</li>
+      <li>close incognito window</li>
+      <li>reconnect</li>
+    </ol>
+
+    <form id="form">
+      <label>
+        Enter mnemonic with "?" in place of a missing word:
+        <br>
+        <textarea id="partialMnemonic" name="partialMnemonic" rows="3" cols="150">test test test test ? test test test test test test test test test test test test test test test test test test test</textarea>
+      </label>
+      <br>
+      <input type="submit">
+    </form>
+    <pre id="out">--</pre>
+
+    (Uses words from <a href="https://raw.githubusercontent.com/bitcoinjs/bip39/master/src/wordlists/english.json">bip39 dictionary</a>)
+
+
+
+    <script src="/index.c1f29d47.js" defer=""></script>
+  </body>
+</html>
