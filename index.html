@@ -11,6 +11,17 @@
   <body>
     <h2>Recover a missing word in mnemonic phrase (BIP39)</h2>
 
+    To slightly increase security:
+    <ol>
+      <li>open this page in Incognito mode</li>
+      <li>disconnect internet</li>
+      <li>enter mnemonic</li>
+      <li>submit</li>
+      <li>write down possible mnemonics</li>
+      <li>close incognito window</li>
+      <li>reconnect</li>
+    </ol>
+
     <form id="form">
       <label>
         Enter mnemonic with "?" in place of a missing word:
@@ -22,6 +33,7 @@
     </form>
     <pre id="out">--</pre>
 
+    (Uses words from <a href="https://raw.githubusercontent.com/bitcoinjs/bip39/master/src/wordlists/english.json">bip39 dictionary</a>)
 
 
 
