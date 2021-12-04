@@ -1,5 +1,12 @@
 {
+  "scripts": {
+    "start": "parcel serve --no-hmr index.html",
+    "build": "rm -rf dist && parcel build --no-optimize --no-scope-hoist --no-source-maps index.html"
+  },
   "dependencies": {
     "bip39": "^3.0.4"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.1"
   }
 }
