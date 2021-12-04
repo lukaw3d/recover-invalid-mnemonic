@@ -1,5 +1,5 @@
-const bip39 = require('bip39');
-const allWords = bip39.wordlists[bip39.getDefaultWordlist()];
+const { validateMnemonic, wordlists, getDefaultWordlist } = require('bip39');
+const allWords = wordlists[getDefaultWordlist()];
 
 window.form.addEventListener('submit', event => {
   try {
@@ -16,7 +16,7 @@ window.form.addEventListener('submit', event => {
 
     const possibleMnemonics = allWords
       .map(w => partialMnemonic.replace('?', w))
-      .filter(m => bip39.validateMnemonic(m));
+      .filter(m => validateMnemonic(m));
 
     if (possibleMnemonics.length <= 0) throw new Error('Mnemonic is invalid - probably contains invalid words or has invalid length');
 
