@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "parcel serve --no-hmr index.html",
-    "build": "rm -rf docs && parcel build --no-optimize --no-scope-hoist --no-source-maps --public-url /find-missing-word-in-mnemonic --dist-dir docs index.html"
+    "build": "rm -rf docs && parcel build --no-optimize --no-scope-hoist --no-source-maps --public-url /recover-invalid-mnemonic --dist-dir docs index.html"
   },
   "dependencies": {
     "bip39": "^3.0.4"
