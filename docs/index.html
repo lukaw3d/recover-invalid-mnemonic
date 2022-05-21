@@ -9,7 +9,7 @@
 </style>
   </head>
   <body>
-    <h2>Recover a missing word in mnemonic phrase (BIP39)</h2>
+    <h2>Recover an invalid mnemonic phrase (BIP39)</h2>
 
     To slightly increase security:
     <ol>
@@ -24,19 +24,23 @@
 
     <form id="form">
       <label>
-        Enter mnemonic with "?" in place of a missing word:
+        Enter mnemonic:
         <br>
-        <textarea id="partialMnemonic" name="partialMnemonic" rows="3" cols="150">test test test test ? test test test test test test test test test test test test test test test test test test test</textarea>
+        <textarea id="invalidMnemonic" name="invalidMnemonic" rows="3" cols="150">test test neck neglect betray witness viable boy thunder number obtain false false symbol gospel mixed dad hybrid laptop speak pulse issue wrong test</textarea>
       </label>
       <br>
       <input type="submit">
     </form>
     <pre id="out">--</pre>
 
-    (Uses words from <a href="https://raw.githubusercontent.com/bitcoinjs/bip39/master/src/wordlists/english.json">bip39 dictionary</a>)
+    <p>
+      (Uses words from <a href="https://raw.githubusercontent.com/bitcoinjs/bip39/master/src/wordlists/english.json">bip39 dictionary</a>)
+    </p>
+    <p>
+      <a href="https://github.com/lukaw3d/recover-invalid-mnemonic">Source code</a>
+    </p>
 
 
-
-    <script src="/find-missing-word-in-mnemonic/index.5bb534e9.js" defer=""></script>
+    <script src="/recover-invalid-mnemonic/index.9c52ed3f.js" defer=""></script>
   </body>
 </html>
