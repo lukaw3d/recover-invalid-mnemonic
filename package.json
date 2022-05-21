@@ -4,7 +4,8 @@
     "build": "rm -rf docs && parcel build --no-optimize --no-scope-hoist --no-source-maps --public-url /recover-invalid-mnemonic --dist-dir docs index.html"
   },
   "dependencies": {
-    "bip39": "^3.0.4"
+    "bip39": "^3.0.4",
+    "js-levenshtein": "^1.1.6"
   },
   "devDependencies": {
     "parcel": "^2.0.1"

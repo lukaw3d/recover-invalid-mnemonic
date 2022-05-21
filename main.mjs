@@ -1,6 +1,7 @@
 // @ts-check
 const { validateMnemonic, wordlists, getDefaultWordlist } = require('bip39');
 const allWords = wordlists[getDefaultWordlist()];
+const levenshtein = require('js-levenshtein')
 
 function filterUniqueAndValid(mnemonics = [['a']]) {
   return [...new Set(mnemonics.map(m => m.join(' ')))].filter(m => validateMnemonic(m))
@@ -34,9 +35,21 @@ window.form.addEventListener('submit', event => {
       ...furtherSwap,
     ]
 
+
+    const possibleTypoMnemonics = invalidMnemonic.split(' ').flatMap((word, ix, arr) => {
+      return allWords.filter(altWord => levenshtein(word, altWord) === 1)
+        .map(altWord => [...arr.slice(0, ix), altWord, ...arr.slice(ix + 1)])
+    })
+    const possibleDoubleTypoMnemonics = invalidMnemonic.split(' ').flatMap((word, ix, arr) => {
+      return allWords.filter(altWord => levenshtein(word, altWord) === 2)
+        .map(altWord => [...arr.slice(0, ix), altWord, ...arr.slice(ix + 1)])
+    })
+
     window.out.textContent = [
       `Possibly mistakenly duplicated words:\n${dupeWords.join('\n')}`,
       `Possible mnemonics with swapped nearby words:\n${filterUniqueAndValid(possibleSwapMnemonics).join('\n')}`,
+      `Possible mnemonics with one typo:\n${filterUniqueAndValid(possibleTypoMnemonics).join('\n')}`,
+      `Possible mnemonics with two typos:\n${filterUniqueAndValid(possibleDoubleTypoMnemonics).join('\n')}`,
     ].join('\n\n\n')
   } catch (err) {
     window.out.textContent = err;
