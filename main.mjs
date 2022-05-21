@@ -19,8 +19,12 @@ window.form.addEventListener('submit', event => {
     if (invalidMnemonic.split(' ').length % 3 !== 0) throw new Error('Mnemonic length is invalid');
 
     const nearbySwap = invalidMnemonic.split(' ').map((word, ix, arr) => [...arr.slice(0, ix), arr[ix + 1], word, ...arr.slice(ix + 2)] ).slice(0, -1)
+    const doubleNearbySwap = nearbySwap.flatMap(m => m.map((word, ix, arr) => [...arr.slice(0, ix), arr[ix + 1], word, ...arr.slice(ix + 2)] ).slice(0, -1))
+    const furtherSwap = invalidMnemonic.split(' ').map((word, ix, arr) => [...arr.slice(0, ix), arr[ix + 1], arr[ix + 2], word, ...arr.slice(ix + 3)] ).slice(0, -2)
     const possibleSwapMnemonics = [
       ...nearbySwap,
+      ...doubleNearbySwap,
+      ...furtherSwap,
     ]
 
     window.out.textContent = [
