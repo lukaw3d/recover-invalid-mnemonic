@@ -18,6 +18,13 @@ window.form.addEventListener('submit', event => {
 
     if (invalidMnemonic.split(' ').length % 3 !== 0) throw new Error('Mnemonic length is invalid');
 
+    const wordCounts = invalidMnemonic.split(' ').reduce((agg, word) => {
+      agg[word] = (agg[word] || 0) + 1
+      return agg
+    }, {})
+    const dupeWords = Object.entries(wordCounts).filter(([word, count]) => count > 1).map(([word, count]) => word)
+
+
     const nearbySwap = invalidMnemonic.split(' ').map((word, ix, arr) => [...arr.slice(0, ix), arr[ix + 1], word, ...arr.slice(ix + 2)] ).slice(0, -1)
     const doubleNearbySwap = nearbySwap.flatMap(m => m.map((word, ix, arr) => [...arr.slice(0, ix), arr[ix + 1], word, ...arr.slice(ix + 2)] ).slice(0, -1))
     const furtherSwap = invalidMnemonic.split(' ').map((word, ix, arr) => [...arr.slice(0, ix), arr[ix + 1], arr[ix + 2], word, ...arr.slice(ix + 3)] ).slice(0, -2)
@@ -28,6 +35,7 @@ window.form.addEventListener('submit', event => {
     ]
 
     window.out.textContent = [
+      `Possibly mistakenly duplicated words:\n${dupeWords.join('\n')}`,
       `Possible mnemonics with swapped nearby words:\n${filterUniqueAndValid(possibleSwapMnemonics).join('\n')}`,
     ].join('\n\n\n')
   } catch (err) {
