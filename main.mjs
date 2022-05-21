@@ -1,26 +1,31 @@
+// @ts-check
 const { validateMnemonic, wordlists, getDefaultWordlist } = require('bip39');
 const allWords = wordlists[getDefaultWordlist()];
+
+function filterUniqueAndValid(mnemonics = [['a']]) {
+  return [...new Set(mnemonics.map(m => m.join(' ')))].filter(m => validateMnemonic(m))
+}
 
 window.form.addEventListener('submit', event => {
   try {
     event.preventDefault();
 
-    const partialMnemonic = window.partialMnemonic.value
+    /** @type {string} */
+    const invalidMnemonic = window.invalidMnemonic.value
       .trim()
       .replace(/\n/g, ' ')
       .replace(/ +/g, ' ');
 
-    if (partialMnemonic.split('?').length - 1 < 1) throw new Error('No missing word marked with "?" in mnemonic');
-    if (partialMnemonic.split('?').length - 1 > 1) throw new Error('Mnemonic should only contain one missing word marked with "?"');
-    if (partialMnemonic.split(' ').length % 3 !== 0) throw new Error('Mnemonic length is invalid');
+    if (invalidMnemonic.split(' ').length % 3 !== 0) throw new Error('Mnemonic length is invalid');
 
-    const possibleMnemonics = allWords
-      .map(w => partialMnemonic.replace('?', w))
-      .filter(m => validateMnemonic(m));
+    const nearbySwap = invalidMnemonic.split(' ').map((word, ix, arr) => [...arr.slice(0, ix), arr[ix + 1], word, ...arr.slice(ix + 2)] ).slice(0, -1)
+    const possibleSwapMnemonics = [
+      ...nearbySwap,
+    ]
 
-    if (possibleMnemonics.length <= 0) throw new Error('Mnemonic is invalid - probably contains invalid words or has invalid length');
-
-    window.out.textContent = `Possible mnemonics:\n${possibleMnemonics.join('\n')}`;
+    window.out.textContent = [
+      `Possible mnemonics with swapped nearby words:\n${filterUniqueAndValid(possibleSwapMnemonics).join('\n')}`,
+    ].join('\n\n\n')
   } catch (err) {
     window.out.textContent = err;
   }
