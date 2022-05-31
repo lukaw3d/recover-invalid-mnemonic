@@ -219,7 +219,7 @@ window.form.addEventListener('submit', (event)=>{
             `Possibly mistakenly duplicated words:\n${dupeWords.join('\n')}`,
             `Possible mnemonics with swapped nearby words:\n${filterUniqueAndValid(possibleSwapMnemonics).join('\n')}`,
             `Possible mnemonics with one typo:\n${filterUniqueAndValid(possibleTypoMnemonics).join('\n')}`,
-            `Possible mnemonics with two typos:\n${filterUniqueAndValid(possibleDoubleTypoMnemonics).join('\n')}`, 
+            `Possible mnemonics with one word with two typos:\n${filterUniqueAndValid(possibleDoubleTypoMnemonics).join('\n')}`, 
         ].join('\n\n\n');
     } catch (err) {
         window.out.textContent = err;
@@ -2080,8 +2080,8 @@ exports.finished = require('./lib/internal/streams/end-of-stream.js');
 exports.pipeline = require('./lib/internal/streams/pipeline.js');
 
 },{"./lib/_stream_readable.js":"i00EV","./lib/_stream_writable.js":"aVA6P","./lib/_stream_duplex.js":"1wZYp","./lib/_stream_transform.js":"hDU4o","./lib/_stream_passthrough.js":"I9ZLr","./lib/internal/streams/end-of-stream.js":"iTz8C","./lib/internal/streams/pipeline.js":"cCnTj"}],"i00EV":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a

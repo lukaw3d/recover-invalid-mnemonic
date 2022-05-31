@@ -49,7 +49,7 @@ window.form.addEventListener('submit', event => {
       `Possibly mistakenly duplicated words:\n${dupeWords.join('\n')}`,
       `Possible mnemonics with swapped nearby words:\n${filterUniqueAndValid(possibleSwapMnemonics).join('\n')}`,
       `Possible mnemonics with one typo:\n${filterUniqueAndValid(possibleTypoMnemonics).join('\n')}`,
-      `Possible mnemonics with two typos:\n${filterUniqueAndValid(possibleDoubleTypoMnemonics).join('\n')}`,
+      `Possible mnemonics with one word with two typos:\n${filterUniqueAndValid(possibleDoubleTypoMnemonics).join('\n')}`,
     ].join('\n\n\n')
   } catch (err) {
     window.out.textContent = err;
