@@ -6948,8 +6948,8 @@ module.exports = function(iterations, keylen) {
 };
 
 },{}],"63T7J":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 var defaultEncoding;
 /* istanbul ignore next */ if (global.process && global.process.browser) defaultEncoding = 'utf-8';
 else if (global.process && global.process.version) {
@@ -7061,8 +7061,8 @@ module.exports = function(thing, encoding, name) {
 };
 
 },{"safe-buffer":"lQQY8"}],"jwv6z":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 'use strict';
 // limit of Crypto.getRandomValues()
 // https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
