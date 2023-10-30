@@ -45,11 +45,17 @@ window.form.addEventListener('submit', event => {
         .map(altWord => [...arr.slice(0, ix), altWord, ...arr.slice(ix + 1)])
     })
 
+    const possibleColumnsSwapMnemonics = [[
+      ...invalidMnemonic.split(' ').filter((word, ix) => ix % 2 === 0),
+      ...invalidMnemonic.split(' ').filter((word, ix) => ix % 2 === 1),
+    ]]
+
     window.out.textContent = [
       `Possibly mistakenly duplicated words:\n${dupeWords.join('\n')}`,
       `Possible mnemonics with swapped nearby words:\n${filterUniqueAndValid(possibleSwapMnemonics).join('\n')}`,
       `Possible mnemonics with one typo:\n${filterUniqueAndValid(possibleTypoMnemonics).join('\n')}`,
       `Possible mnemonics with one word with two typos:\n${filterUniqueAndValid(possibleDoubleTypoMnemonics).join('\n')}`,
+      `Possible mnemonics with columns/rows swapped:\n${filterUniqueAndValid(possibleColumnsSwapMnemonics).join('\n')}`,
     ].join('\n\n\n')
   } catch (err) {
     window.out.textContent = err;
